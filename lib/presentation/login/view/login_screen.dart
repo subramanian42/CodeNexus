@@ -31,7 +31,8 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       builder: (context, state) {
         if (state is LoginLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Scaffold(
+              body: Center(child: CircularProgressIndicator()));
         }
 
         return Scaffold(
@@ -51,24 +52,28 @@ class _LoginScreenState extends State<LoginScreen> {
             'assets/github-mark.png',
             width: 125,
           ),
+          const SizedBox(height: 30),
+          const Text(
+            'Code Nexus',
+            style: TextStyle(
+              fontSize: 40,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           SizedBox(height: height * 1 / 2),
           ElevatedButton(
             style: ButtonStyle(
               backgroundColor:
                   MaterialStateProperty.resolveWith((states) => Colors.black),
-              fixedSize: MaterialStateProperty.resolveWith(
-                  (states) => Size(width * .75, 32)),
-              shape: MaterialStateProperty.resolveWith((states) =>
-                  RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25))),
             ),
             onPressed: () {
               context.read<LoginBloc>().add(LogInWithGithub());
             },
-            child: const Text(
+            child: Text(
               "Sign in With GitHub",
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white, fontSize: 16),
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.onPrimary, fontSize: 16),
             ),
           ),
         ],
