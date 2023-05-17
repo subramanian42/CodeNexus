@@ -35,7 +35,7 @@ class AppRouter {
                 path: 'detail',
                 builder: (context, state) => BlocProvider(
                   create: (context) => RepositoryDetailBloc(
-                    currentRepository: state.extra as GithubRepository,
+                    currentRepository: state.extra as GithubRepositoryModel,
                     userRepository:
                         RepositoryProvider.of<UserRepository>(context),
                   )..add(FetchRepositoryDetail()),
