@@ -1,3 +1,4 @@
+import 'package:code_nexus/core/github_client.dart';
 import 'package:code_nexus/core/repository/auth_repository.dart';
 import 'package:code_nexus/core/routes/router.dart';
 import 'package:code_nexus/core/theme/themes.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import 'core/bloc/auth_bloc.dart';
+import 'core/repository/user_repository.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,13 +25,18 @@ class CodeNexus extends StatefulWidget {
 }
 
 class _CodeNexusState extends State<CodeNexus> {
+  final _client = GithubClient();
+  final _authRepo = AuthRepository();
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider(
-      create: (context) => AuthRepository(),
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<AuthRepository>(create: (context) => _authRepo),
+        RepositoryProvider<UserRepository>(
+            create: (context) => UserRepository(_client)),
+      ],
       child: BlocProvider(
-        create: (context) =>
-            AuthBloc(authenticationRepository: AuthRepository()),
+        create: (context) => AuthBloc(authenticationRepository: _authRepo),
         child: const CodeNexusView(),
       ),
     );
