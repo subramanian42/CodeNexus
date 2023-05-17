@@ -1,17 +1,21 @@
 part of 'auth_bloc.dart';
 
-abstract class AuthState {}
-
-class AuthInitial extends AuthState {}
-
-class AuthLoading extends AuthState {}
-
-class AuthSuccess extends AuthState {
-  final User? currentUser;
-  AuthSuccess({required this.currentUser});
+enum AppStatus {
+  authenticated,
+  unauthenticated,
 }
 
-class AuthFailure extends AuthState {
-  final String error;
-  AuthFailure(this.error);
+final class AuthState {
+  const AuthState._({
+    required this.status,
+    this.user = User.empty,
+  });
+
+  const AuthState.authenticated(User user)
+      : this._(status: AppStatus.authenticated, user: user);
+
+  const AuthState.unauthenticated() : this._(status: AppStatus.unauthenticated);
+
+  final AppStatus status;
+  final User user;
 }

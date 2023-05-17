@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:code_nexus/core/repository/auth_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/user_model.dart';
 
@@ -12,7 +13,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository _authRepository;
   AuthBloc({required AuthRepository authenticationRepository})
       : _authRepository = authenticationRepository,
-        super(AuthSuccess(currentUser: User.empty)) {
+        super(
+          authenticationRepository.currentUser.isNotEmpty
+              ? AuthState.authenticated(authenticationRepository.currentUser)
+              : const AuthState.unauthenticated(),
+        ) {
     on<AppUserChanged>(onAppUserChanged);
     on<AppLogoutRequested>(onAppLogoutRequested);
     _userSubscription = _authRepository.user.listen(
@@ -22,18 +27,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   late final StreamSubscription<User> _userSubscription;
 
   void onAppUserChanged(AppUserChanged event, Emitter<AuthState> emit) async {
-    try {
-      emit(event.user.isNotEmpty
-          ? AuthSuccess(currentUser: event.user)
-          : AuthInitial());
-    } catch (e) {
-      emit(AuthFailure(e.toString()));
-    }
+    emit(event.user.isNotEmpty
+        ? AuthState.authenticated(event.user)
+        : const AuthState.unauthenticated());
   }
 
-  void onAppLogoutRequested(AppLogoutRequested event, Emitter<AuthState> emit) {
+  void onAppLogoutRequested(
+      AppLogoutRequested event, Emitter<AuthState> emit) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.clear();
+
     _authRepository.logout();
-    emit(AuthInitial());
   }
 
   @override
