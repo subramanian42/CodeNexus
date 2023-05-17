@@ -101,7 +101,6 @@ class GithubClient {
     Uri uri = Uri();
 
     uri = Uri.parse(url);
-    print(uri);
 
     final response = await httpClient.get(
       uri,
