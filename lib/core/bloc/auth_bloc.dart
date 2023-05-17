@@ -24,7 +24,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       (user) => add(AppUserChanged(user)),
     );
   }
-  late final StreamSubscription<User> _userSubscription;
+  late final StreamSubscription<UserModel> _userSubscription;
 
   void onAppUserChanged(AppUserChanged event, Emitter<AuthState> emit) async {
     emit(event.user.isNotEmpty

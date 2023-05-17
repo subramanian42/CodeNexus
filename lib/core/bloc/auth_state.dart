@@ -8,14 +8,14 @@ enum AppStatus {
 final class AuthState {
   const AuthState._({
     required this.status,
-    this.user = User.empty,
+    this.user = UserModel.empty,
   });
 
-  const AuthState.authenticated(User user)
+  const AuthState.authenticated(UserModel user)
       : this._(status: AppStatus.authenticated, user: user);
 
   const AuthState.unauthenticated() : this._(status: AppStatus.unauthenticated);
 
   final AppStatus status;
-  final User user;
+  final UserModel user;
 }

@@ -5,7 +5,7 @@ abstract class AuthEvent {}
 class AppLogoutRequested extends AuthEvent {}
 
 class AppUserChanged extends AuthEvent {
-  final User user;
+  final UserModel user;
 
   AppUserChanged(this.user);
 }
