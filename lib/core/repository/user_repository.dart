@@ -26,11 +26,11 @@ class UserRepository {
     return orgsList;
   }
 
-  Future<List<GithubRepositoryModel>> getRepositories() async {
+  Future<List<RepositoryInfoModel>> getRepositories() async {
     final result = await _githubClient.fetchList('/user/repos');
-    final List<GithubRepositoryModel> reposList = <GithubRepositoryModel>[];
+    final List<RepositoryInfoModel> reposList = <RepositoryInfoModel>[];
     for (dynamic element in result) {
-      reposList.add(GithubRepositoryModel.fromJson(element));
+      reposList.add(RepositoryInfoModel.fromJson(element));
     }
     return reposList;
   }
@@ -43,6 +43,7 @@ class UserRepository {
     }
     return branchList;
   }
+
   Future<List<RepositoryDetailsModel>> getRepositoryDetails(String url,
       {Map<String, String>? queryParameters}) async {
     final result =
