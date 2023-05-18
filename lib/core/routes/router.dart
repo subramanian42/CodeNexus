@@ -32,16 +32,14 @@ class AppRouter {
             ),
             routes: [
               GoRoute(
-                path: 'detail',
-                builder: (context, state) => BlocProvider(
-                  create: (context) => RepositoryDetailBloc(
-                    currentRepository: state.extra as GithubRepositoryModel,
-                    userRepository:
-                        RepositoryProvider.of<UserRepository>(context),
-                  )..add(FetchRepositoryDetail()),
-                  child: const RepositoryDetailsScreen(),
-                ),
-              ),
+                  path: 'repository',
+                  builder: (context, state) => BlocProvider(
+                        create: (context) => RepositoryDetailBloc(
+                          currentRepository: state.extra as RepositoryInfoModel,
+                          userRepository: context.read<UserRepository>(),
+                        )..add(FetchRepositoryDetail()),
+                        child: const RepositoryDetailsScreen(),
+                      ),
             ],
           ),
           GoRoute(
