@@ -12,6 +12,10 @@ migrate_working_dir/
 google-services.json
 .env.dart
 
+# Windows
+**/windows/flutter/generated_plugin_registrant.cc
+**/windows/flutter/generated_plugin_registrant.h
+**/windows/flutter/generated_plugins.cmake
 # IntelliJ related
 *.iml
 *.ipr
@@ -33,7 +37,7 @@ google-services.json
 .pub-cache/
 .pub/
 /build/
-
+/test/widget_test.dart
 # Symbolication related
 app.*.symbols
 
