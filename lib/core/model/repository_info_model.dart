@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class GithubRepositoryModel {
+class RepositoryInfoModel {
   final int? id;
 
   final String? name;
@@ -24,7 +24,7 @@ class GithubRepositoryModel {
 
   final bool? hasPages;
 
-  GithubRepositoryModel({
+  RepositoryInfoModel({
     this.id,
     this.name,
     this.fullName,
@@ -46,13 +46,13 @@ class GithubRepositoryModel {
     this.hasPages,
   });
 
-  factory GithubRepositoryModel.fromRawJson(String str) =>
-      GithubRepositoryModel.fromJson(json.decode(str));
+  factory RepositoryInfoModel.fromRawJson(String str) =>
+      RepositoryInfoModel.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory GithubRepositoryModel.fromJson(Map<String, dynamic> json) =>
-      GithubRepositoryModel(
+  factory RepositoryInfoModel.fromJson(Map<String, dynamic> json) =>
+      RepositoryInfoModel(
         id: json["id"],
         name: json["name"],
         fullName: json["full_name"],
