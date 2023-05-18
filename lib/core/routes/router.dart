@@ -1,4 +1,4 @@
-import 'package:code_nexus/core/model/github_repository_model.dart';
+import 'package:code_nexus/core/model/repository_info_model.dart';
 import 'package:code_nexus/core/repository/auth_repository.dart';
 import 'package:code_nexus/presentation/login/controller/login_bloc.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ import '../../presentation/repository_detail/repository_detail.dart';
 import '../bloc/auth_bloc.dart';
 import '../repository/user_repository.dart';
 
-part 'refresh_bloc.dart';
+part 'router_refresh_bloc.dart';
 
 class AppRouter {
   static router(BuildContext ctx) => GoRouter(
