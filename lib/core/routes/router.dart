@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:go_router/go_router.dart';
 
+import '../../presentation/file_explorer/file_explorer.dart';
 import '../../presentation/home/controller/home_bloc.dart';
 import '../../presentation/home/view/home_screen.dart';
 import '../../presentation/login/view/login_screen.dart';
@@ -40,6 +41,23 @@ class AppRouter {
                         )..add(FetchRepositoryDetail()),
                         child: const RepositoryDetailsScreen(),
                       ),
+                  routes: [
+                    GoRoute(
+                        path: 'file_explorer/:name',
+                        name: 'file_explorer',
+                        builder: (context, state) {
+                          final params = state.extra as Map<String, String>;
+                          return BlocProvider(
+                            create: (context) => FileExplorerBloc(
+                              name: state.pathParameters["name"] ?? "",
+                              self: params['self'] ?? "",
+                              next: params['next'] ?? "",
+                              userRepository: context.read<UserRepository>(),
+                            )..add(FetchFolderDetails()),
+                            child: const FileExplorerScreen(),
+                          );
+                        }),
+                  ]),
             ],
           ),
           GoRoute(
