@@ -26,9 +26,8 @@ class AppRouter {
           GoRoute(
             path: '/',
             builder: (context, state) => BlocProvider(
-              create: (context) =>
-                  HomeBloc(RepositoryProvider.of<UserRepository>(context))
-                    ..add(FetchUserDetail()),
+              create: (context) => HomeBloc(context.read<UserRepository>())
+                ..add(FetchUserDetail()),
               child: const HomeScreen(),
             ),
             routes: [
