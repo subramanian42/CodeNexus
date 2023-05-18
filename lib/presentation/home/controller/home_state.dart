@@ -6,7 +6,7 @@ class HomeState {
   final FetchStatus status;
   final GithubUserModel user;
   final List<OrganizationModel> orgs;
-  final List<GithubRepositoryModel> repos;
+  final List<RepositoryInfoModel> repos;
   final String? errorMessage;
   const HomeState({
     this.status = FetchStatus.initial,
@@ -19,7 +19,7 @@ class HomeState {
     FetchStatus? status,
     GithubUserModel? user,
     List<OrganizationModel>? orgs,
-    List<GithubRepositoryModel>? repos,
+    List<RepositoryInfoModel>? repos,
     String? errorMessage,
   }) {
     return HomeState(

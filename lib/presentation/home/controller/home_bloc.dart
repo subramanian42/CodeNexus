@@ -1,4 +1,4 @@
-import 'package:code_nexus/core/model/github_repository_model.dart';
+import 'package:code_nexus/core/model/repository_info_model.dart';
 import 'package:code_nexus/core/model/github_user_model.dart';
 import 'package:code_nexus/core/model/organization_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
