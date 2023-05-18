@@ -20,25 +20,27 @@ class _HomeScreenState extends State<HomeScreen> {
         switch (state.status) {
           case FetchStatus.initial:
             return const Scaffold(
+              backgroundColor: Color(0xffeeeeee),
               body: Center(
                 child: CircularProgressIndicator(),
               ),
             );
           case (FetchStatus.failure):
             return const Scaffold(
+              backgroundColor: Color(0xffeeeeee),
               body: Center(
                 child: Text('failed to fetch user'),
               ),
             );
           case FetchStatus.success:
             return Scaffold(
-              backgroundColor: Colors.grey[200],
+              backgroundColor: const Color(0xffeeeeee),
               body: SingleChildScrollView(
                 child: Column(
                   children: [
                     appBar(state),
-                    organizations(state),
                     repostiories(state),
+                    organizations(state),
                   ],
                 ),
               ),
@@ -255,9 +257,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: ListTile(
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                    ),
+                    leading: const Icon(Icons.folder),
                     title: Text(
                       repo.name ?? "",
                       style: Theme.of(context).textTheme.titleMedium,
@@ -271,7 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           )
                         : null,
                     onTap: () {
-                      context.push('/detail', extra: repo);
+                      context.push('/repository', extra: repo);
                     },
                   ),
                 );
