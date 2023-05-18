@@ -95,19 +95,26 @@ class GithubClient {
     return jsonDecode(response.body) as List;
   }
 
-  Future<List<dynamic>> fetchFromUrl(
-    String url,
-  ) async {
+  Future<dynamic> fetchFromUrl(
+    String url, {
+    Map<String, String>? queryParams,
+  }) async {
     Uri uri = Uri();
 
     uri = Uri.parse(url);
-
+    if (queryParams != null && queryParams.isNotEmpty) {
+      uri = uri.replace(queryParameters: queryParams);
+    }
     final response = await httpClient.get(
       uri,
       headers: _headers,
     );
-
-    return jsonDecode(response.body) as List;
+    final result = jsonDecode(response.body);
+    if (result == List<dynamic>) {
+      return result as List;
+    } else {
+      return result;
+    }
   }
 
   Map<String, dynamic> _handleResponse(http.Response response) {
