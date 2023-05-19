@@ -28,14 +28,26 @@ class _FileExplorerScreenState extends State<FileExplorerScreen> {
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
-            backgroundColor: const Color(0xffeeeeee),
             appBar: AppBar(
               title: Container(
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: Text(
-                    filename,
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        color: Colors.white, fontWeight: FontWeight.bold),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.folder_open,
+                        size: 24,
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        filename,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineSmall
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                    ],
                   )),
             ),
             body: switch (state.status) {
