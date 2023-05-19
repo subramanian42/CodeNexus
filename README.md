@@ -31,7 +31,7 @@ Follow the steps below to run the Code Nexus app:
 Here are some screenshots of the Code Nexus app:
 | | | | |
 |:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|
-|<img width="200" alt="Login Page" src="screenshots/login_page.png"> Login Page |  <img width="200" alt="home page" src="screenshots/home_page.png"> | <img width="200" alt="Repository View Page" src="screenshots/repository_view_page.png"> | <img width="200" alt="File Explorer" src="screenshots/file_explorer.png">|
+|<img width="200" alt="Login Page" src="screenshots/login_page.png"> |  <img width="200" alt="home page" src="screenshots/home_page.png"> | <img width="200" alt="Repository View Page" src="screenshots/repository_view_page.png"> | <img width="200" alt="File Explorer" src="screenshots/file_explorer.png"> |
 
 
 
