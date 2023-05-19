@@ -11,22 +11,23 @@ class FileTile extends StatelessWidget {
   final String? title;
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: onTap,
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
-          color: Color(isFolder ? 0xFF8DA1AF : 0xFFDCEAF6),
+          color: isFolder
+              ? Theme.of(context).colorScheme.onSecondary
+              : Theme.of(context).colorScheme.onPrimary,
           borderRadius: BorderRadius.circular(9),
         ),
         child: ListTile(
-          tileColor: const Color(0xffecf0f3),
           leading: Icon(isFolder ? Icons.folder : Icons.insert_drive_file),
-          title: Text(
-            title ?? "file name is empty",
-            style: const TextStyle(color: Color(0xff333333)),
-          ),
+          title: Text(title ?? "file name is empty",
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.titleMedium),
         ),
       ),
     );
