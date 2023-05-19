@@ -10,31 +10,28 @@ class CustomTab extends StatelessWidget {
   final List<RepositoryDetailsModel> branchfiles;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: const Color(0xffeeeeee),
-      child: ListView.builder(
-        itemCount: branchfiles.length,
-        itemBuilder: (context, index) {
-          final branchfile = branchfiles[index];
+    return ListView.builder(
+      itemCount: branchfiles.length,
+      itemBuilder: (context, index) {
+        final branchfile = branchfiles[index];
 
-          return FileTile(
-            onTap: branchfile.type == "dir"
-                ? () => context.pushNamed(
-                      'file_explorer',
-                      pathParameters: {
-                        "name": branchfile.name ?? "",
-                      },
-                      extra: {
-                        "self": branchfile.url ?? "",
-                        "next": branchfile.gitUrl ?? "",
-                      },
-                    )
-                : null,
-            isFolder: branchfile.type == "dir",
-            title: branchfile.name,
-          );
-        },
-      ),
+        return FileTile(
+          onTap: branchfile.type == "dir"
+              ? () => context.pushNamed(
+                    'file_explorer',
+                    pathParameters: {
+                      "name": branchfile.name ?? "",
+                    },
+                    extra: {
+                      "self": branchfile.url ?? "",
+                      "next": branchfile.gitUrl ?? "",
+                    },
+                  )
+              : null,
+          isFolder: branchfile.type == "dir",
+          title: branchfile.name,
+        );
+      },
     );
   }
 }
