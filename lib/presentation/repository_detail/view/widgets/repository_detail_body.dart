@@ -61,10 +61,7 @@ class _RepositoryDetailBodyState extends State<RepositoryDetailBody>
           Text(
             title ?? "title is empty",
             maxLines: 2,
-            style: Theme.of(context)
-                .textTheme
-                .titleLarge
-                ?.copyWith(color: Colors.white),
+            style: Theme.of(context).textTheme.titleLarge,
             overflow: TextOverflow.ellipsis,
           ),
           if (description != null) ...{
@@ -72,10 +69,7 @@ class _RepositoryDetailBodyState extends State<RepositoryDetailBody>
             Text(
               description,
               maxLines: 4,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(color: Colors.white),
+              style: Theme.of(context).textTheme.bodyMedium,
               overflow: TextOverflow.ellipsis,
             ),
           }
