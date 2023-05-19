@@ -49,31 +49,27 @@ class _LoginScreenState extends State<LoginScreen> {
         children: [
           SizedBox(height: height * .12),
           Image.asset(
-            'assets/github-mark.png',
+            'assets/github-mark-white.png',
             width: 125,
           ),
           const SizedBox(height: 30),
-          const Text(
+          Text(
             'Code Nexus',
-            style: TextStyle(
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
-            ),
+            style: Theme.of(context)
+                .textTheme
+                .displayMedium
+                ?.copyWith(fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: height * 1 / 2),
+          SizedBox(height: height * 1 / 3),
           ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateProperty.resolveWith((states) => Colors.black),
-            ),
+            style: const ButtonStyle(),
             onPressed: () {
               context.read<LoginBloc>().add(LogInWithGithub());
             },
             child: Text(
               "Sign in With GitHub",
               textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Theme.of(context).colorScheme.onPrimary, fontSize: 16),
+              style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
         ],
