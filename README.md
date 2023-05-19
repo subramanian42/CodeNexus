@@ -20,27 +20,51 @@ The file explorer screen allows users to navigate through files and folders with
 Follow the steps below to run the Code Nexus app:
 
 1. Clone this repository to your local machine.
-2. Make sure you have Flutter installed. If not, follow the Flutter installation guide: [Flutter Installation](https://flutter.dev/docs/get-started/install).
+2. Make sure you have Flutter installed. If not, follow the [Flutter installation guide](https://flutter.dev/docs/get-started/install).
 3. Open a terminal and navigate to the project directory.
-4. Run `flutter pub get` to install the required dependencies.
-5. Connect a device or start an emulator.
-6. Run `flutter run` to launch the app on your device/emulator.
+4. Run the following command to install the required dependencies:
+    ```
+    flutter pub get
+    ```
+5. Download the Google Services JSON file from the Firebase console. Follow these steps:
+- Go to the [Firebase Console](https://console.firebase.google.com/).
+- Select your project or create a new one.
+- Go to the "Project settings" by clicking on the gear icon next to "Project Overview" on the left sidebar.
+- In the "Your apps" section, click on the "Add app" button (Android icon).
+- Provide the necessary information for the Android app and click on "Register app."
+- Download the `google-services.json` file when prompted.
+6. Copy the downloaded `google-services.json` file to the `android/app` directory of your project.
+7. Open the `android/app/build.gradle` file in your project and add the following line at the bottom of the file, inside the `dependencies` block:
+   ```
+   implementation 'com.google.firebase:firebase-auth-ktx'
+   ```
+8. Still in the `android/app/build.gradle` file, add the following line at the bottom of the file, outside any block:
+   ```
+   apply plugin: 'com.google.gms.google-services'
+   ```
+9. Open the `android/build.gradle` file in your project and add the following classpath to the `dependencies` block:
+   ```
+   classpath 'com.google.gms:google-services:{latest_version}'
+    ```
+10. Save the files and return to the terminal.
+11. Connect a device or start an emulator.
+12. Run the following command to launch the app on your device/emulator:
+    ```
+    flutter run
+    ```
+Make sure to complete the necessary Firebase setup and configuration, such as enabling the necessary Firebase services for your app, before running the app with the Firebase functionality.
+
+Please note that the above steps assume you have the required setup and configuration for Firebase in your Flutter project.
 
 ## Screenshots
 
 Here are some screenshots of the Code Nexus app:
+| | | | |
+|:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|
+|<img width="200" alt="Login Page" src="screenshots/login_page.png"> |  <img width="200" alt="home page" src="screenshots/home_page.png"> | <img width="200" alt="Repository View Page" src="screenshots/repository_view_page.png"> | <img width="200" alt="File Explorer" src="screenshots/file_explorer.png"> |
 
-![Login Page](screenshots/login_page.png)
-*Login Page*
 
-![Home Page](screenshots/home_page.png)
-*Home Page*
 
-![Repository View Page](screenshots/repository_view_page.png)
-*Repository View Page*
-
-![File Explorer](screenshots/file_explorer.png)
-*File Explorer*
 
 ## Acknowledgements
 
