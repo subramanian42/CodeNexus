@@ -18,27 +18,30 @@ class UserRepository {
   }
 
   Future<List<OrganizationModel>> getOrganization() async {
-    final result = await _githubClient.fetchList('/organizations');
+    final result = await _githubClient.fetchList('/organizations')
+        as List<Map<String, dynamic>>;
     final List<OrganizationModel> orgsList = <OrganizationModel>[];
-    for (dynamic element in result) {
+    for (Map<String, dynamic> element in result) {
       orgsList.add(OrganizationModel.fromJson(element));
     }
     return orgsList;
   }
 
   Future<List<RepositoryInfoModel>> getRepositories() async {
-    final result = await _githubClient.fetchList('/user/repos');
+    final result = await _githubClient.fetchList('/user/repos')
+        as List<Map<String, dynamic>>;
     final List<RepositoryInfoModel> reposList = <RepositoryInfoModel>[];
-    for (dynamic element in result) {
+    for (Map<String, dynamic> element in result) {
       reposList.add(RepositoryInfoModel.fromJson(element));
     }
     return reposList;
   }
 
   Future<List<Branch>> getBranches(String url) async {
-    final result = await _githubClient.fetchFromUrl(url);
+    final List<Map<String, dynamic>> result =
+        await _githubClient.fetchFromUrl(url) as List<Map<String, dynamic>>;
     final List<Branch> branchList = <Branch>[];
-    for (dynamic element in result) {
+    for (Map<String, dynamic> element in result) {
       branchList.add(Branch.fromJson(element));
     }
     return branchList;
@@ -46,11 +49,11 @@ class UserRepository {
 
   Future<List<RepositoryDetailsModel>> getRepositoryDetails(String url,
       {Map<String, String>? queryParameters}) async {
-    final result =
-        await _githubClient.fetchFromUrl(url, queryParams: queryParameters);
+    final result = await _githubClient.fetchFromUrl(url,
+        queryParams: queryParameters) as List<Map<String, dynamic>>;
     final List<RepositoryDetailsModel> githubFilesList =
         <RepositoryDetailsModel>[];
-    for (dynamic element in result) {
+    for (Map<String, dynamic> element in result) {
       githubFilesList.add(RepositoryDetailsModel.fromJson(element));
     }
     return githubFilesList;
@@ -58,8 +61,8 @@ class UserRepository {
 
   Future<FolderDetailsModel> getFolderDetails(String url,
       {Map<String, String>? queryParameters}) async {
-    final result =
-        await _githubClient.fetchFromUrl(url, queryParams: queryParameters);
+    final result = await _githubClient.fetchFromUrl(url,
+        queryParams: queryParameters) as Map<String, dynamic>;
 
     final folder = FolderDetailsModel.fromJson(result);
     return folder;
