@@ -30,24 +30,24 @@ class OrganizationModel {
   });
 
   factory OrganizationModel.fromRawJson(String str) =>
-      OrganizationModel.fromJson(json.decode(str));
+      OrganizationModel.fromJson(json.decode(str) as Map<String, dynamic>);
 
   String toRawJson() => json.encode(toJson());
 
   factory OrganizationModel.fromJson(Map<String, dynamic> json) =>
       OrganizationModel(
-        login: json["login"],
-        id: json["id"],
-        nodeId: json["node_id"],
-        url: json["url"],
-        reposUrl: json["repos_url"],
-        eventsUrl: json["events_url"],
-        hooksUrl: json["hooks_url"],
-        issuesUrl: json["issues_url"],
-        membersUrl: json["members_url"],
-        publicMembersUrl: json["public_members_url"],
-        avatarUrl: json["avatar_url"],
-        description: json["description"],
+        login: json["login"] as String?,
+        id: json["id"] as int?,
+        nodeId: json["node_id"] as String?,
+        url: json["url"] as String?,
+        reposUrl: json["repos_url"] as String?,
+        eventsUrl: json["events_url"] as String?,
+        hooksUrl: json["hooks_url"] as String?,
+        issuesUrl: json["issues_url"] as String?,
+        membersUrl: json["members_url"] as String?,
+        publicMembersUrl: json["public_members_url"] as String?,
+        avatarUrl: json["avatar_url"] as String?,
+        description: json["description"] as String?,
       );
 
   Map<String, dynamic> toJson() => {

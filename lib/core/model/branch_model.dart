@@ -10,13 +10,14 @@ class Branch {
     this.protected,
   });
 
-  factory Branch.fromRawJson(String str) => Branch.fromJson(json.decode(str));
+  factory Branch.fromRawJson(String str) =>
+      Branch.fromJson(json.decode(str) as Map<String, dynamic>);
 
   String toRawJson() => json.encode(toJson());
 
   factory Branch.fromJson(Map<String, dynamic> json) => Branch(
-        name: json["name"],
-        protected: json["protected"],
+        name: json["name"] as String?,
+        protected: json["protected"] as bool?,
       );
 
   Map<String, dynamic> toJson() => {

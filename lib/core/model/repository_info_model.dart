@@ -47,37 +47,37 @@ class RepositoryInfoModel {
   });
 
   factory RepositoryInfoModel.fromRawJson(String str) =>
-      RepositoryInfoModel.fromJson(json.decode(str));
+      RepositoryInfoModel.fromJson(json.decode(str) as Map<String, dynamic>);
 
   String toRawJson() => json.encode(toJson());
 
   factory RepositoryInfoModel.fromJson(Map<String, dynamic> json) =>
       RepositoryInfoModel(
-        id: json["id"],
-        name: json["name"],
-        fullName: json["full_name"],
-        htmlUrl: json["html_url"],
-        description: json["description"],
-        url: json["url"],
-        branchesUrl: json["branches_url"],
-        contentsUrl: json["contents_url"],
+        id: json["id"] as int?,
+        name: json["name"] as String?,
+        fullName: json["full_name"] as String?,
+        htmlUrl: json["html_url"] as String?,
+        description: json["description"] as String?,
+        url: json["url"] as String?,
+        branchesUrl: json["branches_url"] as String?,
+        contentsUrl: json["contents_url"] as String?,
         createdAt: json["created_at"] == null
             ? null
-            : DateTime.parse(json["created_at"]),
+            : DateTime.parse((json["created_at"] as String?) ?? ""),
         updatedAt: json["updated_at"] == null
             ? null
-            : DateTime.parse(json["updated_at"]),
+            : DateTime.parse((json["updated_at"] as String?) ?? ""),
         pushedAt: json["pushed_at"] == null
             ? null
-            : DateTime.parse(json["pushed_at"]),
-        homepage: json["homepage"],
-        size: json["size"],
-        stargazersCount: json["stargazers_count"],
-        watchersCount: json["watchers_count"],
-        language: json["language"],
-        hasIssues: json["has_issues"],
-        hasProjects: json["has_projects"],
-        hasPages: json["has_pages"],
+            : DateTime.parse((json["pushed_at"] as String?) ?? ""),
+        homepage: json["homepage"] as String?,
+        size: json["size"] as int?,
+        stargazersCount: json["stargazers_count"] as int?,
+        watchersCount: json["watchers_count"] as int?,
+        language: json["language"] as String?,
+        hasIssues: json["has_issues"] as bool?,
+        hasProjects: json["has_projects"] as bool?,
+        hasPages: json["has_pages"] as bool?,
       );
 
   Map<String, dynamic> toJson() => {

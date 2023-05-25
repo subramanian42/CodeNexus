@@ -30,24 +30,24 @@ class GithubUserModel {
   });
   static GithubUserModel get empty => const GithubUserModel(name: "");
   factory GithubUserModel.fromRawJson(String str) =>
-      GithubUserModel.fromJson(json.decode(str));
+      GithubUserModel.fromJson(json.decode(str) as Map<String, dynamic>);
 
   String toRawJson() => json.encode(toJson());
 
   factory GithubUserModel.fromJson(Map<String, dynamic> json) =>
       GithubUserModel(
-        avatarUrl: json["avatar_url"],
-        url: json["url"],
-        name: json["name"],
-        company: json["company"],
-        blog: json["blog"],
-        location: json["location"],
-        email: json["email"],
-        bio: json["bio"],
-        publicRepos: json["public_repos"],
-        publicGists: json["public_gists"],
-        followers: json["followers"],
-        following: json["following"],
+        avatarUrl: json["avatar_url"] as String?,
+        url: json["url"] as String?,
+        name: json["name"] as String?,
+        company: json["company"] as String?,
+        blog: json["blog"] as String?,
+        location: json["location"] as String?,
+        email: json["email"] as String?,
+        bio: json["bio"] as String?,
+        publicRepos: json["public_repos"] as int?,
+        publicGists: json["public_gists"] as int?,
+        followers: json["followers"] as int?,
+        following: json["following"] as int?,
       );
 
   Map<String, dynamic> toJson() => {

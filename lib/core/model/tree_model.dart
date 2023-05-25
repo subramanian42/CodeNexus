@@ -17,17 +17,18 @@ class Tree {
     this.size,
   });
 
-  factory Tree.fromRawJson(String str) => Tree.fromJson(json.decode(str));
+  factory Tree.fromRawJson(String str) =>
+      Tree.fromJson(json.decode(str) as Map<String, dynamic>);
 
   String toRawJson() => json.encode(toJson());
 
   factory Tree.fromJson(Map<String, dynamic> json) => Tree(
-        path: json["path"],
-        mode: json["mode"],
-        type: json["type"],
-        sha: json["sha"],
-        url: json["url"],
-        size: json["size"],
+        path: json["path"] as String?,
+        mode: json["mode"] as String?,
+        type: json["type"] as String?,
+        sha: json["sha"] as String?,
+        url: json["url"] as String?,
+        size: json["size"] as int?,
       );
 
   Map<String, dynamic> toJson() => {
