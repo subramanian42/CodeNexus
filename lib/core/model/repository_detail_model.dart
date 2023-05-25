@@ -8,7 +8,7 @@ class RepositoryDetailsModel {
   final String? url;
   final String? htmlUrl;
   final String? gitUrl;
-  final dynamic downloadUrl;
+
   final String? type;
 
   RepositoryDetailsModel({
@@ -19,26 +19,24 @@ class RepositoryDetailsModel {
     this.url,
     this.htmlUrl,
     this.gitUrl,
-    this.downloadUrl,
     this.type,
   });
 
   factory RepositoryDetailsModel.fromRawJson(String str) =>
-      RepositoryDetailsModel.fromJson(json.decode(str));
+      RepositoryDetailsModel.fromJson(json.decode(str) as Map<String, dynamic>);
 
   String toRawJson() => json.encode(toJson());
 
   factory RepositoryDetailsModel.fromJson(Map<String, dynamic> json) =>
       RepositoryDetailsModel(
-        name: json["name"],
-        path: json["path"],
-        sha: json["sha"],
-        size: json["size"],
-        url: json["url"],
-        htmlUrl: json["html_url"],
-        gitUrl: json["git_url"],
-        downloadUrl: json["download_url"],
-        type: json["type"],
+        name: json["name"] as String?,
+        path: json["path"] as String?,
+        sha: json["sha"] as String?,
+        size: json["size"] as int?,
+        url: json["url"] as String?,
+        htmlUrl: json["html_url"] as String?,
+        gitUrl: json["git_url"] as String?,
+        type: json["type"] as String?,
       );
 
   Map<String, dynamic> toJson() => {
@@ -49,7 +47,6 @@ class RepositoryDetailsModel {
         "url": url,
         "html_url": htmlUrl,
         "git_url": gitUrl,
-        "download_url": downloadUrl,
         "type": type,
       };
 }
