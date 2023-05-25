@@ -20,7 +20,7 @@ import '../repository/user_repository.dart';
 part 'router_refresh_bloc.dart';
 
 class AppRouter {
-  static router(BuildContext ctx) => GoRouter(
+  static GoRouter router(BuildContext ctx) => GoRouter(
         debugLogDiagnostics: true,
         routes: [
           GoRoute(
