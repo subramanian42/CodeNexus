@@ -123,7 +123,7 @@ class GithubClient {
     }
     try {
       if (response.body.isNotEmpty) {
-        return jsonDecode(response.body);
+        return jsonDecode(response.body) as Map<String, dynamic>;
       }
     } catch (e) {
       throw Exception(e);
