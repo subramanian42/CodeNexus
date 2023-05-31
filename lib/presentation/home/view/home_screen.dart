@@ -28,14 +28,16 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () => context.read<HomeBloc>().add(FetchUserDetail()),
             );
           case FetchStatus.success:
-            return Scaffold(
-              body: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    AppBarWidget(state: state),
-                    _buildRepositoriesWidget(state),
-                    _buildOrganisationWidget(state),
-                  ],
+            return SafeArea(
+              child: Scaffold(
+                body: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      AppBarWidget(state: state),
+                      _buildRepositoriesWidget(state),
+                      _buildOrganisationWidget(state),
+                    ],
+                  ),
                 ),
               ),
             );
