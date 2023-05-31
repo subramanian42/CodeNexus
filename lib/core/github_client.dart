@@ -24,48 +24,6 @@ class GithubClient {
     "X-OAuth-Scopes": "repo, user",
   };
 
-  Future<Map<String, dynamic>> putResource(
-    String path,
-    Map<String, dynamic> data, {
-    Map<String, String>? queryParams,
-  }) async {
-    Uri uri = await _createUri(path, queryParams: queryParams);
-    final dataString = jsonEncode(data);
-    final response = await httpClient.put(
-      uri,
-      body: dataString,
-      headers: _headers,
-    );
-
-    return _handleResponse(response);
-  }
-
-  Future<Map<String, dynamic>> updateResource(
-    String path,
-    Map<String, dynamic> data, {
-    Map<String, String>? queryParams,
-  }) async {
-    Uri uri = await _createUri(path, queryParams: queryParams);
-    final dataString = jsonEncode(data);
-    final response = await httpClient.patch(
-      uri,
-      body: dataString,
-      headers: _headers,
-    );
-
-    return _handleResponse(response);
-  }
-
-  Future<Map<String, dynamic>> deleteResource(String path) async {
-    Uri uri = await _createUri(path);
-    final response = await httpClient.delete(
-      uri,
-      headers: _headers,
-    );
-
-    return _handleResponse(response);
-  }
-
   Future<Map<String, dynamic>> fetch(
     String path, {
     Map<String, String>? queryParams,
@@ -135,9 +93,9 @@ class GithubClient {
     String path, {
     Map<String, String>? queryParams,
   }) async {
-    Map<String, String> queryParams0 = {};
+    Map<String, String> params = {};
     if (queryParams != null) {
-      queryParams0.addAll(queryParams);
+      params.addAll(queryParams);
     }
 
     try {
@@ -149,7 +107,7 @@ class GithubClient {
     } catch (e) {
       rethrow;
     }
-    final uri = Uri.https(baseUrl, path, queryParams0);
+    final uri = Uri.https(baseUrl, path, params);
     return uri;
   }
 }
