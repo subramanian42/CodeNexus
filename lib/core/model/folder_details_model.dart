@@ -24,10 +24,7 @@ class FolderDetailsModel {
       FolderDetailsModel(
         sha: json["sha"] as String?,
         url: json["url"] as String?,
-        tree: json["tree"] == null
-            ? []
-            : List<Tree>.from((json["tree"] as List<Map<String, dynamic>>?)!
-                .map((x) => Tree.fromJson(x))),
+        tree: _convertToTree(json["tree"] as List<dynamic>),
         truncated: json["truncated"] as bool?,
       );
 
@@ -39,4 +36,15 @@ class FolderDetailsModel {
             : List<dynamic>.from(tree!.map((x) => x.toJson())),
         "truncated": truncated,
       };
+}
+
+List<Tree>? _convertToTree(List<dynamic>? tree) {
+  if (tree == null) return [];
+
+  final List<Map<String, dynamic>> result =
+      tree.map((dynamic e) => e as Map<String, dynamic>).toList();
+
+  final List<Tree>? convertedTree =
+      List<Tree>.from((result).map((e) => Tree.fromJson(e)));
+  return convertedTree;
 }
