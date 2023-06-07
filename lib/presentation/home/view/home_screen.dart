@@ -8,7 +8,17 @@ import 'package:go_router/go_router.dart';
 import '../controller/home_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen._();
+
+  static Widget routeBuilder(BuildContext context, GoRouterState state) {
+    return BlocProvider(
+      create: (context) {
+        return HomeBloc(context.read<UserRepository>()) //
+          ..add(FetchUserDetail());
+      },
+      child: const HomeScreen._(),
+    );
+  }
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();

@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
+  static String routeName = '/login';
+
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -25,14 +27,13 @@ class _LoginScreenState extends State<LoginScreen> {
               .showSnackBar(const SnackBar(content: Text('Login Success')));
         }
         if (state is LoginFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text('Login Failed with exception ${state.error}')));
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text('Login Failed with exception ${state.error}')));
         }
       },
       builder: (context, state) {
         if (state is LoginLoading) {
-          return const Scaffold(
-              body: Center(child: CircularProgressIndicator()));
+          return const Scaffold(body: Center(child: CircularProgressIndicator()));
         }
 
         return Scaffold(
@@ -55,10 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
           const SizedBox(height: 30),
           Text(
             'Code Nexus',
-            style: Theme.of(context)
-                .textTheme
-                .displayMedium
-                ?.copyWith(fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.displayMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
           SizedBox(height: height * 1 / 3),
           ElevatedButton(

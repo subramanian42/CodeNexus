@@ -1,25 +1,25 @@
 import 'dart:convert';
 
 class RepositoryDetailsModel {
-  final String? name;
-  final String? path;
-  final String? sha;
+  final String name;
+  final String path;
+  final String sha;
   final int? size;
-  final String? url;
-  final String? htmlUrl;
-  final String? gitUrl;
+  final String url;
+  final String htmlUrl;
+  final String gitUrl;
 
-  final String? type;
+  final String type;
 
   RepositoryDetailsModel({
-    this.name,
-    this.path,
-    this.sha,
+    required this.name,
+    required this.path,
+    required this.sha,
     this.size,
-    this.url,
-    this.htmlUrl,
-    this.gitUrl,
-    this.type,
+    required this.url,
+    required this.htmlUrl,
+    required this.gitUrl,
+    required this.type,
   });
 
   factory RepositoryDetailsModel.fromRawJson(String str) =>
@@ -27,16 +27,15 @@ class RepositoryDetailsModel {
 
   String toRawJson() => json.encode(toJson());
 
-  factory RepositoryDetailsModel.fromJson(Map<String, dynamic> json) =>
-      RepositoryDetailsModel(
-        name: json["name"] as String?,
-        path: json["path"] as String?,
-        sha: json["sha"] as String?,
+  factory RepositoryDetailsModel.fromJson(Map<String, dynamic> json) => RepositoryDetailsModel(
+        name: json["name"] as String? ?? '',
+        path: json["path"] as String? ?? '',
+        sha: json["sha"] as String? ?? '',
         size: json["size"] as int?,
-        url: json["url"] as String?,
-        htmlUrl: json["html_url"] as String?,
-        gitUrl: json["git_url"] as String?,
-        type: json["type"] as String?,
+        url: json["url"] as String? ?? '',
+        htmlUrl: json["html_url"] as String? ?? '',
+        gitUrl: json["git_url"] as String? ?? '',
+        type: json["type"] as String? ?? '',
       );
 
   Map<String, dynamic> toJson() => {
